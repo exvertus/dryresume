@@ -20,10 +20,11 @@ The apparent double-standard is not nefarious as much as to make the job of thei
 hiring staff easier---if you had a massive pile of applications on your desk, 
 you would ask the needles in the haystack to raise their hands too.
 
-So while it is advantageous for a candidite to custom-tailor their application-documents
-*for that employer*, this can be taken to [extreme lengths](https://www.newsweek.com/woman-draws-pixar-characters-outside-studio-gets-attention-employees-1674117)
-and can feel like an eggs-in-one-basket problem pretty quickly. Therefore, there is a need
-for candidates to strike a balance between standing out to a particular employer while
-still diverisfying. So this also includes a [kustomize](https://kustomize.io/)-like way 
-of using overlays to specialize each resume and cover-letter to add things like custom-
-summaries, re-ordering most relevant skills to the top, etc.
+While it is advantageous for a candidite to custom-tailor their application-documents
+*for that one employer*, this can be taken to [extreme lengths](https://www.newsweek.com/woman-draws-pixar-characters-outside-studio-gets-attention-employees-1674117)
+and can feel like an eggs-in-one-basket problem quickly. Many candidates need a way to 
+strike a balance between standing out to a particular employer while still diverisfying
+the set of employers they apply to. So this also includes a [kustomize](https://kustomize.io/)-like way 
+of using overlays to customize *the data* that each final copy gets. 
+This can be used to manage custom-summaries and statements, 
+re-order skills, and cut out irrelevant experience on a per-resume/CV basis.
