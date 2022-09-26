@@ -3,8 +3,6 @@ import json
 from pathlib import Path
 
 class ResumeData:
-    DATA_FILENAME = 'resumedata.json'
-
     def __init__(self, config_dir):
         self.config_file = Path(config_dir)
         self.data = {}
@@ -14,9 +12,9 @@ class ResumeData:
             ['parent-data', self._inherit_from_parent],
             ['patches', self._apply_patches]
         ]
-        self.load_config(self.config_file)
+        self._load_config(self.config_file)
 
-    def load_config(self, config_path):
+    def _load_config(self, config_path):
         with config_path.open() as f:
             self.raw_data = json.load(f)
         for field, funct in self.reserved_keyword_map:
@@ -33,3 +31,7 @@ class ResumeData:
     def _apply_patches(self, patch):
         self.patch = jsonpatch.JsonPatch(patch)
         self.data = self.patch.apply(self.data)
+
+def load_resumes(resume_files):
+    for fp in resume_files:
+        

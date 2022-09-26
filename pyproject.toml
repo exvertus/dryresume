@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "resume-automator"
+name = "resume_automator"
 version = "0.1.0"
 description = ""
 authors = ["tflanigan <tflanig1@gmail.com>"]
