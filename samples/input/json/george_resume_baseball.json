@@ -39,15 +39,31 @@
             "path": "experiences",
             "value": [{
                 "organization": "New York Yankees",
-                "title": "Reader/Editor",
-                "start_date": "12/11/1991",
-                "end_date": "12/20/1991",
-                "website": "https://pendantpublishing.com/",
-                "description": "Proofreading and editing.",
+                "title": "Assistant to the Traveling Secretary",
+                "start_date": "05/19/1994",
+                "end_date": "05/08/1997",
+                "website": "https://www.mlb.com/yankees",
+                "description": "Assisted Traveling Secretary in business, team and stadium initiatives.",
                 "highlights": [
-                    "Had sex with the cleaning lady on the desk in my office."
+                    "Spearheaded initiative replacing polyester player uniforms with cotton uniforms.",
+                    "Built sleeping quarters underneath the desk in my office."
                 ]
             }]
+        },
+        {
+            "op": "replace",
+            "path": "/academics/0/degree",
+            "value": "BA, General Studies"
+        },
+        {
+            "op": "replace",
+            "path": "/interests",
+            "value": [
+                {
+                    "name": "sports",
+                    "description": "I am a big sports fan, especially baseball!"
+                }
+            ]
         }
     ]
 }
