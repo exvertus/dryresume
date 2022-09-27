@@ -1,0 +1,53 @@
+{
+    "parent-data": "./george_resume.json",
+    "patches": [
+        {
+            "op": "replace",
+            "path": "/contact/nickname",
+            "value": "George"
+        },
+        {
+            "op": "replace",
+            "path": "/contact/email",
+            "value": "george@georgecostanza.com"
+        },
+        {
+            "op": "replace",
+            "path": "/introduction",
+            "value": {
+                "job": "MLB Assistant",
+                "summary": "I have three years of strong experience assisting in all baseball business related matters.",
+                "website": "https://www.georgecostanza.com/"
+            }
+        },
+        {
+            "op": "remove", 
+            "path": "/socials"
+        },
+        {
+            "op": "add", 
+            "path": "/socials", 
+            "value": {"platform": "LinkedIn", "url": "https://www.linkedin.com/in/george-costanza-a89b469/"}
+        },
+        {
+            "op": "replace",
+            "path": "/skills/1",
+            "value": {"name": "Sleeping under desk", "score": 5}
+        },
+        {
+            "op": "replace",
+            "path": "experiences",
+            "value": [{
+                "organization": "New York Yankees",
+                "title": "Reader/Editor",
+                "start_date": "12/11/1991",
+                "end_date": "12/20/1991",
+                "website": "https://pendantpublishing.com/",
+                "description": "Proofreading and editing.",
+                "highlights": [
+                    "Had sex with the cleaning lady on the desk in my office."
+                ]
+            }]
+        }
+    ]
+}

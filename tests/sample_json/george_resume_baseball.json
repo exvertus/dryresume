@@ -1,6 +1,0 @@
-{
-    "parent-data": "./generic.json",
-    "patches": [
-        {"op": "replace", "path": "/socials/0", "value": {"platform": "LinkedIn", "url": "https://www.linkedin.com/in/dood2/"}}
-    ]
-}
