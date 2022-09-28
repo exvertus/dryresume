@@ -27,7 +27,7 @@
         {
             "op": "add", 
             "path": "/socials", 
-            "value": {"platform": "LinkedIn", "url": "https://www.linkedin.com/in/george-costanza-a89b469/"}
+            "value": [{"platform": "LinkedIn", "url": "https://www.linkedin.com/in/george-costanza-a89b469/"}]
         },
         {
             "op": "replace",
