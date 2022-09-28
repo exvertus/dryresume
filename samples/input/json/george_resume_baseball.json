@@ -36,7 +36,7 @@
         },
         {
             "op": "replace",
-            "path": "experiences",
+            "path": "/experiences",
             "value": [{
                 "organization": "New York Yankees",
                 "title": "Assistant to the Traveling Secretary",
