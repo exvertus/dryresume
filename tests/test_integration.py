@@ -13,7 +13,7 @@ def result_path(request):
     return Path(__file__).parent.parent / request.param
 
 class TestIntegrationBroad:
-    """No test doubles and include filesystem---full integration.
+    """No test doubles---full integration.
     """
     @pytest.fixture(scope='class')
     def data_from_json(self):
