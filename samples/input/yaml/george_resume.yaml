@@ -1,0 +1,62 @@
+academics:
+- degree: Bachelor of Marine Biology
+  end_date: 05/23/1975
+  institution: Queens College
+  start_date: 08/08/1971
+  website: https://www.qc.cuny.edu/
+contact:
+  email: gcostanza@frankandestelle.net
+  location:
+    address: 22-37 37th St
+    city: Astoria, Queens
+    country: United States
+    state: NY
+    zip: '11105'
+  name: George Costanza
+  nickname: Koko the Monkey
+  phone: 1.555.555.5555
+experiences:
+- description: Railroad and museum building and design.
+  end_date: 06/06/1990
+  highlights:
+  - Designed the new addition to the Guggenheim Museum in record time.
+  - Designed various railroads.
+  organization: Vandelay Industries
+  start_date: 05/31/1990
+  title: Architect
+  website: https://www.vandelayindustries.com/
+- description: Proofreading and editing.
+  end_date: 12/20/1991
+  highlights:
+  - Had sex with the cleaning lady on the desk in my office.
+  organization: Pendant Publishing
+  start_date: 12/11/1991
+  title: Reader/Editor
+  website: https://pendantpublishing.com/
+interests:
+- description: I have a tendency to lie and hide the truth.
+  name: lying
+  url: https://www.fbi.gov/
+- description: I would have a genius-level IQ if it weren't for my obsession with
+    sex.
+  name: sex
+introduction:
+  job: Architect
+  summary: I build railroads.
+  website: https://www.vandelayindustries.com/
+projects:
+- description: Every instinct I have is wrong, so I do the opposite.
+  name: Doing the opposite.
+  url: https://doingtheopposite.com/
+- description: Trying to reclaim all-time high score.
+  name: Frogger high score
+skills:
+- name: Risk-management
+  score: 5
+- name: Architectural design
+  score: 5
+socials:
+- platform: Facebook
+  url: https://www.facebook.com/personal
+- platform: Instagram
+  url: https://www.facebook.com/people/George-Costanza/100045460891878/
