@@ -4,12 +4,12 @@ import pytest
 import yaml
 from pathlib import Path
 
-from resume_automator.data_manager import load_resumes, ResumeData
+from resume_automator.data_manager import load_resumes
 
 def folder_replace(path, search_for, replace_with, limit=1):
-    """Returns path with folder name replaced, starting from deepest folder.
-    Use limit arg to only replace that many directories."""
-    print('break here')
+    """Returns path with folder name replaced, starting from deepest.
+    Use limit arg to only replace that many directories.
+    """
     parts_list = list(path.parts)
     parts_list.reverse()
     start_at = 0
@@ -20,7 +20,6 @@ def folder_replace(path, search_for, replace_with, limit=1):
     parts_list.reverse()
     return Path(*parts_list)
 
-# Fixtures that should probably be shared later...
 @pytest.fixture(params=('samples/results/json/george_resume.json',
                         'samples/results/json/george_resume_baseball.json',
                         'samples/results/json/george_resume_tv.json'
@@ -44,19 +43,23 @@ class TestIntegrationBroad:
     def test_from_json(self, data_from_json, result_path):
         with result_path.open() as f:
             result_obj = json.load(f)
-        # test_key = Path(str(result_path).replace('results', 'input'))
         test_key = folder_replace(result_path, 'results', 'input')
+        # Temp code below
+        yaml_output = str(test_key).replace('json', 'yaml')
+        with Path(yaml_output).open('w+') as f:
+            yaml.dump(result_obj, f, default_flow_style=False)
+
         assert result_obj == data_from_json[test_key].data
 
-    # @pytest.fixture(scope='class')
-    # def data_from_yaml(self):
-    #     resume_files = (
-    #         'samples/input/yaml/george_resume.json',
-    #         'samples/input/yaml/george_resume_baseball.json',
-    #         'samples/input/yaml/george_resume_tv.json'
-    #     )
-    #     resume_files = [Path(__file__).parent.parent / f for f in resume_files]
-    #     return load_resumes(resume_files)
+    @pytest.fixture(scope='class')
+    def data_from_yaml(self):
+        resume_files = (
+            'samples/input/yaml/george_resume.yaml',
+            'samples/input/yaml/george_resume_baseball.yaml',
+            'samples/input/yaml/george_resume_tv.yaml'
+        )
+        resume_files = [Path(__file__).parent.parent / f for f in resume_files]
+        return load_resumes(resume_files, reader=yaml.load)
 
-    # def test_from_yaml(self, data_from_yaml):
-    #     pass
+    def test_from_yaml(self, data_from_yaml, result_path):
+        print('break here')
