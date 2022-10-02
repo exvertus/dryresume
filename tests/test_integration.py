@@ -68,4 +68,4 @@ class TestIntegrationBroad:
         with yaml_result_path.open() as f:
             result_obj = yaml.load(f, Loader = yaml.Loader)
         test_key = folder_replace(yaml_result_path, 'results', 'input')
-        assert result_obj == data_from_yaml[test_key]
+        assert result_obj == data_from_yaml[test_key].data

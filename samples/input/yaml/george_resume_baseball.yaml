@@ -42,5 +42,5 @@ patches:
 - op: replace
   path: /interests
   value:
-    description: I am a big sports fan, especially baseball!
+  - description: I am a big sports fan, especially baseball!
     name: sports
