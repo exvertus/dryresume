@@ -1,0 +1,29 @@
+{
+    "parent-data": "./george_resume_baseball.json",
+    "patches": [
+        {
+            "op": "replace",
+            "path": "/skills/1",
+            "value": {"name": "Screenwriting", "score": 4}
+        },
+        {
+            "op": "add",
+            "path": "/interests/-",
+            "value": {
+                "name": "Television",
+                "description": "I watch a ton of TV."
+            }
+        },
+        {
+            "op": "add",
+            "path": "/cv",
+            "value": [
+                {
+                    "production": "Jerry",
+                    "role": "Writer",
+                    "description": "Sitcom pilot-production for NBC."
+                }
+            ]
+        }
+    ]
+}
