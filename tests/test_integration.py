@@ -7,7 +7,7 @@ from resume_automator.data_manager import load_resumes, ResumeData
 # Fixtures that should probably be shared later...
 @pytest.fixture(params=('samples/results/json/george_resume.json',
                         'samples/results/json/george_resume_baseball.json',
-                        # samples/input/json/george_resume_tv.json'
+                        'samples/results/json/george_resume_tv.json'
                        ))
 def result_path(request):
     return Path(__file__).parent.parent / request.param
@@ -20,7 +20,7 @@ class TestIntegrationBroad:
         resume_files = (
             'samples/input/json/george_resume.json',
             'samples/input/json/george_resume_baseball.json',
-            # samples/input/json/george_resume_tv.json'
+            'samples/input/json/george_resume_tv.json'
         )
         resume_files = [Path(__file__).parent.parent / f for f in resume_files]
         return load_resumes(resume_files)
