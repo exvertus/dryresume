@@ -5,37 +5,16 @@ from uuid import uuid4
 
 from resume_automator.data_manager import ResumeData
 
-@pytest.fixture()
-def fake_files(fs):
-    parent = Path('/fake/parent.empty')
-    child = parent.parent / 'child.empty'
-    grandchild = parent.parent / 'grandchild.empty'
-    for f in parent, child, grandchild:
-        fs.create_file(f)
-    return parent, child, grandchild
-
-@pytest.fixture()
-def fake_readers(mocker, fake_files):
-    parent = mocker.Mock(
-        name='parent_reader', 
-        return_value={"data": []})
-    child = mocker.Mock(
-        name='child_reader', 
-        return_value={"parent-data": fake_files[1], "patches": []}
-        )
-    grandchild = mocker.Mock(
-        name='grandchild_reader', 
-        return_value={"parent-data": fake_files[2], "patches": []}
-        )
-    return parent, child, grandchild
-
-@pytest.fixture()
-def instances(fake_files, fake_readers):
-    # TODO: use side_effect to return different results from same obj.
-    parent = ResumeData(fake_files[0], fake_readers[0])
-    child = ResumeData(fake_files[1], fake_readers[1])
-    grandchild = ResumeData(fake_files[2], fake_readers[2])
-    return parent, child, grandchild
+PARENT_1_VALUE, PARENT_2_VALUE = str(uuid4()), str(uuid4())
+FAKE_DIR = '/fake/temp/dir'
+TEST_DATA = {
+    'parent.json': {"data": PARENT_1_VALUE},
+    'child.json': {"parent-data": "./parent.json"},
+    'grandchild.json': {"parent-data": "./child.json"},
+    'parentTwo.json': {"data": PARENT_2_VALUE},
+    'childTwo.json': {"parent-data": "./parentTwo.json"},
+    'childTwoAgain.json': {"parent-data": "./parentTwo.json"}
+}
 
 class TestResumeData:
     def test_get_config_missing(self, fs):
@@ -43,11 +22,35 @@ class TestResumeData:
         with pytest.raises(FileNotFoundError):
             ResumeData(arbitrary_path, None)
 
-    def test_load_config_parent(self, instances, fake_readers):
-        assert instances[0].data == fake_readers[0].return_value
+    @pytest.fixture()
+    def fake_fs(self, fs):
+        return fs
 
-    def test_load_config_child(self, instances, fake_readers):
-        assert instances[1].data == fake_readers[1].return_value
+    @pytest.fixture(scope='class')
+    def stub_reader(self, class_mocker):
+        def se(arg):
+            """use filepath as key to expected dict"""
+            key = Path(arg.name).name
+            return TEST_DATA[key]
 
-    def test_load_config_grandchild(self, instances, fake_readers):
-        assert instances[2].data == fake_readers[2].return_value
+        reader = class_mocker.Mock(name='reader')
+        reader.side_effect = se
+        return reader
+
+    @pytest.fixture(params=TEST_DATA.keys())
+    def fake_file(self, fake_fs, request):
+        path = Path(FAKE_DIR) / request.param
+        fake_fs.create_file(path)
+        return path
+
+    @pytest.fixture()
+    def resume_obj(self, stub_reader, fake_file):
+        return ResumeData(fake_file, stub_reader)
+
+    def test_load_config(self, resume_obj, fake_file):
+        if resume_obj.config_file.name in \
+            ('parent.json', 'child.json', 'grandchild.json'):
+            assert resume_obj.data == {"data": PARENT_1_VALUE}
+        elif resume_obj.config_file.name in \
+            ('parentTwo.json', 'childTwo.json', 'childTwoAgain.json'):
+            assert resume_obj.data == {"data": PARENT_2_VALUE}
