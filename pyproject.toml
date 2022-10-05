@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "resume_automator"
+name = "dryresume"
 version = "0.1.0"
 description = ""
 authors = ["tflanigan <tflanig1@gmail.com>"]
@@ -11,7 +11,6 @@ python = "^3.10"
 Jinja2 = "^3.1.2"
 PyYAML = "^6.0"
 jsonpatch = "^1.32"
-pytest-mock = "^3.9.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.1.3"
