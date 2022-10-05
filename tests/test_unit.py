@@ -17,14 +17,14 @@ TEST_DATA = {
 }
 
 class TestResumeData:
+    @pytest.fixture(scope='class', autouse=True)
+    def fake_fs(self, fs_module):
+        return fs_module
+
     def test_get_config_missing(self, fs):
         arbitrary_path = Path(str(uuid4()))
         with pytest.raises(FileNotFoundError):
             ResumeData(arbitrary_path, None)
-
-    @pytest.fixture()
-    def fake_fs(self, fs):
-        return fs
 
     @pytest.fixture(scope='class')
     def stub_reader(self, class_mocker):
