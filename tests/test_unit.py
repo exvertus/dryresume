@@ -3,7 +3,7 @@ from pathlib import Path
 from unittest.mock import patch
 from uuid import uuid4
 
-from resume_automator.data_manager import ResumeData
+from dryresume.data_manager import ResumeData
 
 PARENT_1_VALUE, PARENT_2_VALUE = str(uuid4()), str(uuid4())
 FAKE_DIR = '/fake/temp/dir'

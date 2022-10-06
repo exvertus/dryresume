@@ -4,7 +4,7 @@ import pytest
 import yaml
 from pathlib import Path
 
-from resume_automator.data_manager import load_resumes
+from dryresume.data_manager import load_resumes
 
 def folder_replace(path, search_for, replace_with, limit=1):
     """Returns path with folder name replaced, starting from deepest.
@@ -47,11 +47,15 @@ class TestIntegrationBroad:
         resume_files = [Path(__file__).parent.parent / f for f in resume_files]
         return load_resumes(resume_files)
 
-    def test_from_json(self, data_from_json, json_result_path):
+    @pytest.fixture()
+    def json_result(self, json_result_path):
         with json_result_path.open() as f:
             result_obj = json.load(f)
+        return result_obj
+
+    def test_from_json(self, data_from_json, json_result_path, json_result):
         test_key = folder_replace(json_result_path, 'results', 'input')
-        assert result_obj == data_from_json[test_key].data
+        assert json_result == data_from_json[test_key].data
 
     @pytest.fixture(scope='class')
     def data_from_yaml(self):
@@ -64,8 +68,12 @@ class TestIntegrationBroad:
         return load_resumes(
             resume_files, reader=lambda x : yaml.load(x, Loader = yaml.Loader))
 
-    def test_from_yaml(self, data_from_yaml, yaml_result_path):
+    @pytest.fixture()
+    def yaml_result(self, yaml_result_path):
         with yaml_result_path.open() as f:
             result_obj = yaml.load(f, Loader = yaml.Loader)
+        return result_obj
+
+    def test_from_yaml(self, data_from_yaml, yaml_result_path, yaml_result):
         test_key = folder_replace(yaml_result_path, 'results', 'input')
-        assert result_obj == data_from_yaml[test_key].data
+        assert yaml_result == data_from_yaml[test_key].data
