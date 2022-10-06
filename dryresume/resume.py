@@ -5,7 +5,7 @@ from copy import deepcopy
 
 resume_cache = {}
 
-class ResumeData:
+class Resume:
     def __init__(self, config_path, reader, use_cache=True):
         self.config_file = self.get_config_file(config_path)
         self.use_cache = use_cache
@@ -39,7 +39,7 @@ class ResumeData:
             if cached:
                 self.parent_obj = cached
             else:
-                self.parent_obj = ResumeData(parent_config, self.reader)
+                self.parent_obj = Resume(parent_config, self.reader)
         bulk_patch = jsonpatch.JsonPatch(patches)
         self._save(bulk_patch.apply(self.parent_obj.data))
 
@@ -49,8 +49,12 @@ class ResumeData:
         if self.use_cache and not resume_cache.get(str(self.config_file)):
             resume_cache[str(self.config_file)] = self
 
-def load_resumes(resume_files, reader=json.load):
+    def to_html(self):
+        pass
+
+def create_resumes(resume_files, reader=json.load):
     resume_datas = {}
     for fp in resume_files:
-        resume_datas[fp] = ResumeData(fp, reader)
+        resume_datas[fp] = Resume(fp, reader)
+        resume_datas[fp].to_html()
     return resume_datas

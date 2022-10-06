@@ -3,7 +3,7 @@ from pathlib import Path
 from unittest.mock import patch
 from uuid import uuid4
 
-from dryresume.data_manager import ResumeData
+from dryresume.resume import Resume
 
 PARENT_1_VALUE, PARENT_2_VALUE = str(uuid4()), str(uuid4())
 FAKE_DIR = '/fake/temp/dir'
@@ -24,7 +24,7 @@ class TestResumeData:
     def test_get_config_missing(self, fs):
         arbitrary_path = Path(str(uuid4()))
         with pytest.raises(FileNotFoundError):
-            ResumeData(arbitrary_path, None)
+            Resume(arbitrary_path, None)
 
     @pytest.fixture(scope='class')
     def stub_reader(self, class_mocker):
@@ -45,7 +45,7 @@ class TestResumeData:
 
     @pytest.fixture()
     def resume_obj(self, stub_reader, fake_file):
-        return ResumeData(fake_file, stub_reader)
+        return Resume(fake_file, stub_reader)
 
     def test_load_config(self, resume_obj, fake_file):
         if resume_obj.config_file.name in \

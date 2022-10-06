@@ -4,7 +4,7 @@ import pytest
 import yaml
 from pathlib import Path
 
-from dryresume.data_manager import load_resumes
+from dryresume.resume import create_resumes
 
 def folder_replace(path, search_for, replace_with, limit=1):
     """Returns path with folder name replaced, starting from deepest.
@@ -45,7 +45,7 @@ class TestIntegrationBroad:
             'samples/input/json/george_resume_tv.json'
         )
         resume_files = [Path(__file__).parent.parent / f for f in resume_files]
-        return load_resumes(resume_files)
+        return create_resumes(resume_files)
 
     @pytest.fixture()
     def json_result(self, json_result_path):
@@ -65,7 +65,7 @@ class TestIntegrationBroad:
             'samples/input/yaml/george_resume_tv.yaml'
         )
         resume_files = [Path(__file__).parent.parent / f for f in resume_files]
-        return load_resumes(
+        return create_resumes(
             resume_files, reader=lambda x : yaml.load(x, Loader = yaml.Loader))
 
     @pytest.fixture()
@@ -77,3 +77,10 @@ class TestIntegrationBroad:
     def test_from_yaml(self, data_from_yaml, yaml_result_path, yaml_result):
         test_key = folder_replace(yaml_result_path, 'results', 'input')
         assert yaml_result == data_from_yaml[test_key].data
+
+    def test_to_html(self, data_from_yaml, yaml_result_path):
+        test_key = folder_replace(yaml_result_path, 'results', 'input')
+        with data_from_yaml[test_key].target_path.open() as f:
+            result = f.read()
+        assert result.startswith('<!DOCTYPE html') and \
+            data_from_yaml[test_key].data['email'] in result
