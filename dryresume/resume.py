@@ -1,5 +1,6 @@
 import jsonpatch
 import json
+import shutil
 from pathlib import Path
 from copy import deepcopy
 from jinja2 import Environment, PackageLoader, select_autoescape
@@ -69,6 +70,10 @@ class Resume:
             self.html_target.parent.mkdir()
         with self.html_target.open('w') as f:
             f.write(template.render(self.data))
+        style_dir = Path(self.html_target.parent, 'resumeCSS')
+        if not style_dir.exists():
+            shutil.copytree(
+                Path(__file__).parent / 'templates/resumeCSS', style_dir)
         print('test')
 
 def create_resumes(resume_files, reader=json.load):
