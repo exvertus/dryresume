@@ -86,7 +86,7 @@
 							<div class="job">
 								<h2><a id="{{ job.organization }}" href="{{ job.website }}">{{ job.organization }}</a></h2>
 								<h3>{{ job.title }}</h3>
-								<h4>{{ job.start_date }}-{{ job.end_date }}</h4>
+								<h4>{{ job.start_date|year_only }} - {{ job.end_date|year_only }}</h4>
 								<p>{{ job.description }}</p>
 								<ul class="detail">
 									{% for hightlight in hightlights %}
@@ -109,7 +109,7 @@
 							<div class="job">
 								<h2><a id="{{ degree.organization }}" href="{{ degree.website }}">{{ degree.organization }}</a></h2>
 								<h3>{{ degree.degree }}</h3>
-								<h4>{{ degree.start_date }}-{{ degree.end_date }}</h4>
+								<h4>{{ degree.start_date|year_only }}-{{ degree.end_date|year_only }}</h4>
 							</div>
 							{% endfor %}
 						</div>

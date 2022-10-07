@@ -1,3 +1,4 @@
+import datetime
 import jsonpatch
 import json
 import shutil
@@ -6,6 +7,10 @@ from copy import deepcopy
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 resume_cache = {}
+
+def year_only(date_str, format='%Y'):
+    date = datetime.datetime.strptime(date_str, "%m/%d/%Y").date()
+    return date.strftime(format)
 
 class Resume:
     def __init__(self, config_path, reader, use_cache=True):
@@ -65,6 +70,7 @@ class Resume:
                 loader=PackageLoader("dryresume"),
                 autoescape=select_autoescape()
             )
+            self.jinja_env.filters['year_only'] = year_only
         template = self.jinja_env.get_template("resume.html")
         if not self.html_target.parent.exists():
             self.html_target.parent.mkdir()
