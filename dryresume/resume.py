@@ -11,6 +11,8 @@ class Resume:
         self.use_cache = use_cache
         self.data = {}
         self.parent_obj = None
+        self.html_target = \
+            Path(self.config_file.parent, self.config_file.stem, '.html')
         self.patches = []
         self.reader = reader
         self.load_config(self.config_file)
@@ -24,6 +26,9 @@ class Resume:
     def load_config(self, config_path):
         with config_path.open() as f:
             raw_data = self.reader(f)
+        html_path = raw_data.get('html', '')
+        if html_path:
+            self.html_target = Path(html_path)
         parent_ref = raw_data.get('parent-data')
         patches = raw_data.get('patches', [])
         if parent_ref:
