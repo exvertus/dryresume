@@ -1,4 +1,5 @@
 parent-data: ./george_resume.yaml
+output-html: ../../../build/baseball_from_yaml.html
 patches:
 - op: replace
   path: /contact/nickname

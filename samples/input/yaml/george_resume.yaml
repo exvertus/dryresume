@@ -1,3 +1,4 @@
+output-html: ../../../build/george_from_yaml.html
 academics:
 - degree: Bachelor of Marine Biology
   end_date: 05/23/1975

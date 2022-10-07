@@ -1,6 +1,8 @@
 from dataclasses import replace
 import json
+import re
 import pytest
+import shutil
 import yaml
 from pathlib import Path
 
@@ -37,6 +39,12 @@ def yaml_result_path(request):
 class TestIntegrationBroad:
     """No test doubles---full integration.
     """
+    @pytest.fixture(scope='class', autouse=True)
+    def wipe_build_dir(self):
+        repo_build_dir = Path(__file__).parent / 'build'
+        if repo_build_dir.exists():
+            shutil.rmtree(repo_build_dir)
+
     @pytest.fixture(scope='class')
     def data_from_json(self):
         resume_files = (
@@ -80,7 +88,8 @@ class TestIntegrationBroad:
 
     def test_to_html(self, data_from_yaml, yaml_result_path):
         test_key = folder_replace(yaml_result_path, 'results', 'input')
-        with data_from_yaml[test_key].target_path.open() as f:
+        with data_from_yaml[test_key].html_target.open() as f:
             result = f.read()
         assert result.startswith('<!DOCTYPE html') and \
-            data_from_yaml[test_key].data['email'] in result
+            data_from_yaml[test_key].data['contact']['name'] in result and \
+            data_from_yaml[test_key].data['contact']['email'] in result

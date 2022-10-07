@@ -2,6 +2,7 @@ import jsonpatch
 import json
 from pathlib import Path
 from copy import deepcopy
+from jinja2 import Environment, PackageLoader, select_autoescape
 
 resume_cache = {}
 
@@ -12,7 +13,8 @@ class Resume:
         self.data = {}
         self.parent_obj = None
         self.html_target = \
-            Path(self.config_file.parent, self.config_file.stem, '.html')
+            Path(self.config_file.parent, f"{self.config_file.stem}.html")
+        self.jinja_env = None
         self.patches = []
         self.reader = reader
         self.load_config(self.config_file)
@@ -26,9 +28,11 @@ class Resume:
     def load_config(self, config_path):
         with config_path.open() as f:
             raw_data = self.reader(f)
-        html_path = raw_data.get('html', '')
+        html_path = raw_data.get('output-html', '')
         if html_path:
-            self.html_target = Path(html_path)
+            del raw_data['output-html']
+            raw = config_path.parent / html_path
+            self.html_target = raw.resolve()
         parent_ref = raw_data.get('parent-data')
         patches = raw_data.get('patches', [])
         if parent_ref:
@@ -55,7 +59,17 @@ class Resume:
             resume_cache[str(self.config_file)] = self
 
     def to_html(self):
-        pass
+        if not self.jinja_env:
+            self.jinja_env = Environment(
+                loader=PackageLoader("dryresume"),
+                autoescape=select_autoescape()
+            )
+        template = self.jinja_env.get_template("resume.html")
+        if not self.html_target.parent.exists():
+            self.html_target.parent.mkdir()
+        with self.html_target.open('w') as f:
+            f.write(template.render(self.data))
+        print('test')
 
 def create_resumes(resume_files, reader=json.load):
     resume_datas = {}
