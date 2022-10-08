@@ -83,8 +83,8 @@
 								<h4>{{ job.start_date|year_only }} - {{ job.end_date|year_only }}</h4>
 								<p>{{ job.description }}</p>
 								<ul class="detail">
-									{% for hightlight in hightlights %}
-									<li>{{ hightlight }}</li>
+									{% for hightlight in job['highlights'] %}
+										<li>{{ hightlight }}</li>
 									{% endfor %}
 								</ul>
 							</div>
