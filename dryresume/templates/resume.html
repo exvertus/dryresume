@@ -54,11 +54,13 @@
 							<h2>Skills</h2>
 						</div>
 						<div class="yui-u">
+							{% for skill in skills|in_groups_of(3) %}
 							<ul class="talent">
 								<li>Fill this part</li>
 								<li>Out</li>
 								<li class="last">To use multiple columns</li>
 							</ul>
+							{% endfor %}
 
 							<ul class="talent">
 								<li>Jquery</li>
@@ -109,7 +111,7 @@
 							<div class="job">
 								<h2><a id="{{ degree.organization }}" href="{{ degree.website }}">{{ degree.organization }}</a></h2>
 								<h3>{{ degree.degree }}</h3>
-								<h4>{{ degree.start_date|year_only }}-{{ degree.end_date|year_only }}</h4>
+								<h4>{{ degree.start_date|year_only }} - {{ degree.end_date|year_only }}</h4>
 							</div>
 							{% endfor %}
 						</div>

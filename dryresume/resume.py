@@ -1,3 +1,4 @@
+import chunk
 import datetime
 import jsonpatch
 import json
@@ -11,6 +12,18 @@ resume_cache = {}
 def year_only(date_str, format='%Y'):
     date = datetime.datetime.strptime(date_str, "%m/%d/%Y").date()
     return date.strftime(format)
+
+def in_groups_of(input, groups):
+    total_len = len(input)
+    chunk_len = total_len // groups
+    if total_len % groups:
+        chunk_len += 1
+    results = []
+    for i in range(groups):
+        start_slice = i*chunk_len
+        end_slice = min((i+1)*chunk_len, total_len)
+        results.append([input[start_slice:end_slice]])
+    return results
 
 class Resume:
     def __init__(self, config_path, reader, use_cache=True):
@@ -71,6 +84,7 @@ class Resume:
                 autoescape=select_autoescape()
             )
             self.jinja_env.filters['year_only'] = year_only
+            self.jinja_env.filters['in_groups_of'] = in_groups_of
         template = self.jinja_env.get_template("resume.html")
         if not self.html_target.parent.exists():
             self.html_target.parent.mkdir()
