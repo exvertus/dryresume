@@ -22,7 +22,7 @@ def in_groups_of(input, groups):
     for i in range(groups):
         start_slice = i*chunk_len
         end_slice = min((i+1)*chunk_len, total_len)
-        results.append([input[start_slice:end_slice]])
+        results.append(input[start_slice:end_slice])
     return results
 
 class Resume:
@@ -85,6 +85,7 @@ class Resume:
             )
             self.jinja_env.filters['year_only'] = year_only
             self.jinja_env.filters['in_groups_of'] = in_groups_of
+            self.jinja_env.filters['enumerate'] = enumerate
         template = self.jinja_env.get_template("resume.html")
         if not self.html_target.parent.exists():
             self.html_target.parent.mkdir()

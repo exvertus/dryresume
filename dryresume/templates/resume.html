@@ -54,25 +54,17 @@
 							<h2>Skills</h2>
 						</div>
 						<div class="yui-u">
-							{% for skill in skills|in_groups_of(3) %}
+							{% for skill_column in skills|in_groups_of(3) %}
 							<ul class="talent">
-								<li>Fill this part</li>
-								<li>Out</li>
-								<li class="last">To use multiple columns</li>
+								{% for cnt, skill in skill_column|enumerate %}
+									{% if cnt >= skill_column|length %}
+									<li class="last">{{ skill.score }} | {{ skill.name }}</li>
+									{% else %}
+									<li>{{ skill.score }}/5 | {{ skill.name }}</li>
+									{% endif %}
+								{% endfor %}
 							</ul>
 							{% endfor %}
-
-							<ul class="talent">
-								<li>Jquery</li>
-								<li>PHP</li>
-								<li class="last">CVS / Subversion</li>
-							</ul>
-
-							<ul class="talent">
-								<li>OS X</li>
-								<li>Windows XP/Vista</li>
-								<li class="last">Linux</li>
-							</ul>
 						</div>
 					</div><!--// .yui-gf-->
 
