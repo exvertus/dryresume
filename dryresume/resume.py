@@ -13,16 +13,18 @@ def year_only(date_str, format='%Y'):
     date = datetime.datetime.strptime(date_str, "%m/%d/%Y").date()
     return date.strftime(format)
 
-def in_groups_of(input, groups):
-    total_len = len(input)
+def in_groups_of(iterator, groups):
+    results = []
+    if groups == 0:
+        return results
+    total_len = len(iterator)
     chunk_len = total_len // groups
     if total_len % groups:
         chunk_len += 1
-    results = []
     for i in range(groups):
         start_slice = i*chunk_len
         end_slice = min((i+1)*chunk_len, total_len)
-        results.append(input[start_slice:end_slice])
+        results.append(iterator[start_slice:end_slice])
     return results
 
 class Resume:
