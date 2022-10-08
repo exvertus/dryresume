@@ -26,9 +26,9 @@
 
 				<div class="yui-u">
 					<div class="contact-info">
-						<h3><a id="pdf" href="#">Download PDF</a></h3>
 						<h3><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></h3>
 						<h3>{{ contact.phone }}</h3>
+						<h3><a id="pdf" href="{{ contact.website }}">{{ contact.website }}</a></h3>
 					</div><!--// .contact-info -->
 				</div>
 			</div><!--// .yui-gc -->
@@ -100,11 +100,8 @@
 						</div>
 						<div class="yui-u">
 							{% for degree in academics %}
-							<div class="job">
-								<h2><a id="{{ degree.organization }}" href="{{ degree.website }}">{{ degree.organization }}</a></h2>
-								<h3>{{ degree.degree }}</h3>
-								<h4>{{ degree.start_date|year_only }} - {{ degree.end_date|year_only }}</h4>
-							</div>
+								<h2><a id="{{ degree.institution }}" href="{{ degree.website }}">{{ degree.institution }}</a> - {{ degree.location }}</h2>
+								<h3>{{ degree.degree }} &mdash; <strong>{{ degree.gpa }} GPA</strong></h3>
 							{% endfor %}
 						</div>
 					</div><!--// .yui-gf -->

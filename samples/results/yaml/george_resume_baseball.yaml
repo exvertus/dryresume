@@ -1,8 +1,7 @@
 academics:
 - degree: BA, General Studies
-  end_date: 05/23/1975
+  location: Flushing, New York
   institution: Queens College
-  start_date: 08/08/1971
   website: https://www.qc.cuny.edu/
 contact:
   email: george@georgecostanza.com

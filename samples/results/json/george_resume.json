@@ -53,8 +53,7 @@
     "academics": [
         {
             "institution": "Queens College",
-            "start_date": "08/08/1971",
-            "end_date": "05/23/1975",
+            "location": "Flushing, New York",
             "website": "https://www.qc.cuny.edu/",
             "degree": "Bachelor of Marine Biology"
         }

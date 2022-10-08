@@ -1,9 +1,8 @@
 output-html: ../../../build/george_from_yaml.html
 academics:
 - degree: Bachelor of Marine Biology
-  end_date: 05/23/1975
+  location: Flushing, New York
   institution: Queens College
-  start_date: 08/08/1971
   website: https://www.qc.cuny.edu/
 contact:
   email: gcostanza@frankandestelle.net
@@ -16,6 +15,7 @@ contact:
   name: George Costanza
   nickname: Koko the Monkey
   phone: 1.555.555.5555
+  website: https://www.frankandestelle.net
 experiences:
 - description: Railroad and museum building and design.
   end_date: 06/06/1990
