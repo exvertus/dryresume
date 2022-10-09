@@ -58,7 +58,7 @@ def yaml_files(json_files, tmp_path):
     result = []
     for json_path in json_files:
         file_ext_only = f"{json_path.stem}.yaml"
-        yaml_dest_path = REPO_ROOT / "build" / file_ext_only
+        yaml_dest_path = REPO_ROOT / "build" / f"{json_path.stem}.html"
         yaml_src_path = tmp_path / file_ext_only
         with json_path.open() as json_file:
             data = json.load(json_file)
@@ -105,4 +105,3 @@ class TestIntegrationBroad:
             with load_yamls[test_key].html_target.open() as f:
                 html_string = f.read()
             assert exp_func(html_string, value)
-

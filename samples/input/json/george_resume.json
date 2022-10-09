@@ -56,7 +56,8 @@
             "institution": "Queens College",
             "location": "Flushing, New York",
             "website": "https://www.qc.cuny.edu/",
-            "degree": "Bachelor of Marine Biology"
+            "degree": "Bachelor of Marine Biology",
+            "gpa": "2.1"
         }
     ],
     "projects": [
