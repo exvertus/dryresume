@@ -60,16 +60,15 @@ def yaml_files(json_files, tmp_path):
         file_ext_only = f"{json_path.stem}.yaml"
         yaml_dest_path = REPO_ROOT / "build" / file_ext_only
         yaml_src_path = tmp_path / file_ext_only
-        if not yaml_src_path.exists():
-            with json_path.open() as json_file:
-                data = json.load(json_file)
-            data['output-html'] = str(yaml_dest_path)
-            if 'parent-data' in data:
-                data['parent-data'] = \
-                    f"{str(Path(data['parent-data']).stem)}.yaml"
-            with yaml_src_path.open('w+') as yaml_file:
-                yaml.dump(data, yaml_file)
-            yaml_dict[file_ext_only]['readfile'] = yaml_src_path
+        with json_path.open() as json_file:
+            data = json.load(json_file)
+        data['output-html'] = str(yaml_dest_path)
+        if 'parent-data' in data:
+            data['parent-data'] = \
+                f"{str(Path(data['parent-data']).stem)}.yaml"
+        with yaml_src_path.open('w+') as yaml_file:
+            yaml.dump(data, yaml_file)
+        yaml_dict[file_ext_only]['readfile'] = yaml_src_path
         result.append(yaml_src_path)
     return result
 
