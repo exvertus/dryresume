@@ -25,7 +25,7 @@ test_dates = {
 def test_year_only(td):
     assert year_only(td) == test_dates[td]
 
-test_lengths = ((0, 0), (7, 3), (30, 7))
+test_lengths = ((0, 0), (8, 1), (7, 3), (30, 7))
 @pytest.mark.parametrize("tl", test_lengths)
 def test_in_groups_of(tl):
     testlist = ["a"*tl[0]]
