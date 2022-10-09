@@ -54,7 +54,9 @@
 							<h2>Skills</h2>
 						</div>
 						<div class="yui-u">
-							{% for skill_column in skills|in_groups_of(3) %}
+							{% for skill_column in skills|
+								sort(attribute="score,name", reverse=true)|
+								in_groups_of(3) %}
 							<ul class="talent">
 								{% for cnt, skill in skill_column|enumerate %}
 									{% if cnt >= skill_column|length %}

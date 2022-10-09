@@ -24,7 +24,15 @@
     ],
     "skills": [
         {"name": "Risk-management", "score": 5},
-        {"name": "Architectural design", "score": 5}
+        {"name": "Architectural design", "score": 5},
+        {"name": "Getting upset", "score": 5},
+        {"name": "Lying", "score": 4},
+        {"name": "Thriftiness", "score": 5},
+        {"name": "Cheating", "score": 2},
+        {"name": "Hand modeling", "score": 4},
+        {"name": "Domain mastering", "score": 3},
+        {"name": "Parking cars", "score": 1},
+        {"name": "Sales", "score": 2}
     ],
     "experiences": [
         {
