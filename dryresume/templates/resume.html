@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+
+	<title>{{ contact.name }} | {{ introduction.job }} | {{ contact.email }}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
+	<link rel="stylesheet" type="text/css" href="resumeCSS/resume.css" media="all" />
+
+</head>
+<body>
+
+<div id="doc2" class="yui-t7">
+	<div id="inner">
+	
+		<div id="hd">
+			<div class="yui-gc">
+				<div class="yui-u first">
+					<h1>{{ contact.name }}</h1>
+					<h2>{{ introduction.job }}</h2>
+					<h6>{{ contact.location.city }}, {% if contact.location.state %}{{ contact.location.state }}{% else %}{{ contact.location.country }}{% endif %}
+					</h6>
+				</div>
+
+				<div class="yui-u">
+					<div class="contact-info">
+						<h3><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></h3>
+						<h3>{{ contact.phone }}</h3>
+						<h6><a href="{{ introduction.website }}">{{ introduction.website }}</a></h6>
+						<h6><a href="{{ introduction.social }}">{{ introduction.social }}</a></h6>
+					</div><!--// .contact-info -->
+				</div>
+			</div><!--// .yui-gc -->
+		</div><!--// hd -->
+
+		<div id="bd">
+			<div id="yui-main">
+				<div class="yui-b">
+
+					<div class="yui-gf">
+						<div class="yui-u first">
+							<h2>Summary</h2>
+						</div>
+						<div class="yui-u">
+							<p class="enlarge">
+								{{ introduction.summary }}
+							</p>
+						</div>
+					</div><!--// .yui-gf -->
+
+					<div class="yui-gf">
+						<div class="yui-u first">
+							<h2>Skills</h2>
+						</div>
+						<div class="yui-u">
+							{% for skill_column in skills|
+								sort(attribute="score,name", reverse=true)|
+								in_groups_of(3) %}
+							<ul class="talent">
+								{% for cnt, skill in skill_column|enumerate %}
+									{% if cnt+1 == skill_column|length %}
+									<li class="last">{{ skill.score }}/5 {{ skill.name }}</li>
+									{% else %}
+									<li>{{ skill.score }}/5 {{ skill.name }}</li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+							{% endfor %}
+						</div>
+					</div><!--// .yui-gf-->
+
+					<div class="yui-gf">
+	
+						<div class="yui-u first">
+							<h2>Experience</h2>
+						</div><!--// .yui-u -->
+
+						<div class="yui-u">
+
+							{% for cnt, job in experiences|enumerate %}
+							{% if cnt+1 == experiences|length %}
+							<div class="job last">
+							{% else %}
+							<div class="job">
+							{% endif %}
+								<h2><a id="{{ job.organization }}" href="{{ job.website }}">{{ job.organization }}</a></h2>
+								<h3>{{ job.title }}</h3>
+								<h4>{{ job.start_date|year_only }} - {{ job.end_date|year_only }}</h4>
+								<p>{{ job.description }}</p>
+								<ul>
+									{% for hightlight in job['highlights'] %}
+										<li>{{ hightlight }}</li>
+									{% endfor %}
+								</ul>
+							</div>
+							{% endfor %}
+
+						</div><!--// .yui-u -->
+					</div><!--// .yui-gf -->
+
+
+					<div class="yui-gf last">
+						<div class="yui-u first">
+							<h2>Education</h2>
+						</div>
+						<div class="yui-u">
+							{% for degree in academics %}
+								<h2><a id="{{ degree.institution }}" href="{{ degree.website }}">{{ degree.institution }}</a> - {{ degree.location }}</h2>
+								<h3>{{ degree.degree }} &mdash; <strong>{{ degree.gpa }} GPA</strong></h3>
+							{% endfor %}
+						</div>
+					</div><!--// .yui-gf -->
+
+
+				</div><!--// .yui-b -->
+			</div><!--// yui-main -->
+		</div><!--// bd -->
+
+		<div id="ft">
+			<p>{{ contact.name }} &mdash; <a href="{{ contact.email }}">{{ contact.email }}</a> &mdash; {{ contact.phone }}</p>
+		</div><!--// footer -->
+
+	</div><!-- // inner -->
+
+
+</div><!--// doc -->
+
+
+</body>
+</html>
+

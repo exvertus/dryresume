@@ -1,18 +1,11 @@
 {
+    "output-html": "../../../build/tv_from_json.html",
     "parent-data": "./george_resume_baseball.json",
     "patches": [
         {
             "op": "replace",
             "path": "/skills/1",
             "value": {"name": "Screenwriting", "score": 4}
-        },
-        {
-            "op": "add",
-            "path": "/interests/-",
-            "value": {
-                "name": "Television",
-                "description": "I watch a ton of TV."
-            }
         },
         {
             "op": "add",
