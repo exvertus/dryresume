@@ -22,13 +22,16 @@
 				<div class="yui-u first">
 					<h1>{{ contact.name }}</h1>
 					<h2>{{ introduction.job }}</h2>
+					<h6>{{ contact.location.city }}, {% if contact.location.state %}{{ contact.location.state }}{% else %}{{ contact.location.country }}{% endif %}
+					</h6>
 				</div>
 
 				<div class="yui-u">
 					<div class="contact-info">
 						<h3><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></h3>
 						<h3>{{ contact.phone }}</h3>
-						<h3><a href="{{ introduction.website }}">{{ introduction.website }}</a></h3>
+						<h6><a href="{{ introduction.website }}">{{ introduction.website }}</a></h6>
+						<h6><a href="{{ introduction.social }}">{{ introduction.social }}</a></h6>
 					</div><!--// .contact-info -->
 				</div>
 			</div><!--// .yui-gc -->

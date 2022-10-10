@@ -9,14 +9,6 @@
         },
         {
             "op": "add",
-            "path": "/interests/-",
-            "value": {
-                "name": "Television",
-                "description": "I watch a ton of TV."
-            }
-        },
-        {
-            "op": "add",
             "path": "/cv",
             "value": [
                 {

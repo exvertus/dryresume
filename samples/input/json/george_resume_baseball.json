@@ -22,15 +22,6 @@
             }
         },
         {
-            "op": "remove", 
-            "path": "/socials"
-        },
-        {
-            "op": "add", 
-            "path": "/socials", 
-            "value": [{"platform": "LinkedIn", "url": "https://www.linkedin.com/in/george-costanza-a89b469/"}]
-        },
-        {
             "op": "replace",
             "path": "/skills/1",
             "value": {"name": "Sleeping under desk", "score": 5}
@@ -55,16 +46,6 @@
             "op": "replace",
             "path": "/academics/0/degree",
             "value": "BA, General Studies"
-        },
-        {
-            "op": "replace",
-            "path": "/interests",
-            "value": [
-                {
-                    "name": "sports",
-                    "description": "I am a big sports fan, especially baseball!"
-                }
-            ]
         }
     ]
 }

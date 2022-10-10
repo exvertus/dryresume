@@ -7,7 +7,7 @@
         "phone": "1.555.555.5555",
         "location": {
             "address": "22-37 37th St",
-            "city": "Astoria, Queens",
+            "city": "Queens",
             "state": "NY",
             "country": "United States",
             "zip": "11105"
@@ -16,12 +16,9 @@
     "introduction": {
         "job": "Architect",
         "summary": "I build railroads.",
-        "website": "https://www.vandelayindustries.com/"
+        "website": "https://www.vandelayindustries.com/",
+        "social": "https://www.linkedin.com/in/george-costanza-a89b469/"
     },
-    "socials": [
-        {"platform": "Facebook", "url": "https://www.facebook.com/personal"},
-        {"platform": "Instagram", "url": "https://www.facebook.com/people/George-Costanza/100045460891878/"}
-    ],
     "skills": [
         {"name": "Risk-management", "score": 5},
         {"name": "Architectural design", "score": 5},
@@ -66,28 +63,6 @@
             "website": "https://www.qc.cuny.edu/",
             "degree": "Bachelor of Marine Biology",
             "gpa": "2.1"
-        }
-    ],
-    "projects": [
-        {
-            "name": "Doing the opposite.",
-            "description": "Every instinct I have is wrong, so I do the opposite.",
-            "url": "https://doingtheopposite.com/"
-        },
-        {
-            "name": "Frogger high score",
-            "description": "Trying to reclaim all-time high score."
-        }
-    ],
-    "interests": [
-        {
-            "name": "lying",
-            "description": "I have a tendency to lie and hide the truth.",
-            "url": "https://www.fbi.gov/"
-        },
-        {
-            "name": "sex",
-            "description": "I would have a genius-level IQ if it weren't for my obsession with sex."
         }
     ]
 }
