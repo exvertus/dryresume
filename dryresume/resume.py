@@ -1,4 +1,3 @@
-import chunk
 import datetime
 import jsonpatch
 import json
