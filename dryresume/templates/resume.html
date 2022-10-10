@@ -59,10 +59,10 @@
 								in_groups_of(3) %}
 							<ul class="talent">
 								{% for cnt, skill in skill_column|enumerate %}
-									{% if cnt >= skill_column|length %}
-									<li class="last">{{ skill.score }} | {{ skill.name }}</li>
+									{% if cnt+1 == skill_column|length %}
+									<li class="last">{{ skill.score }}/5 {{ skill.name }}</li>
 									{% else %}
-									<li>{{ skill.score }}/5 | {{ skill.name }}</li>
+									<li>{{ skill.score }}/5 {{ skill.name }}</li>
 									{% endif %}
 								{% endfor %}
 							</ul>
@@ -78,13 +78,17 @@
 
 						<div class="yui-u">
 
-							{% for job in experiences %}
+							{% for cnt, job in experiences|enumerate %}
+							{% if cnt+1 == experiences|length %}
+							<div class="job last">
+							{% else %}
 							<div class="job">
+							{% endif %}
 								<h2><a id="{{ job.organization }}" href="{{ job.website }}">{{ job.organization }}</a></h2>
 								<h3>{{ job.title }}</h3>
 								<h4>{{ job.start_date|year_only }} - {{ job.end_date|year_only }}</h4>
 								<p>{{ job.description }}</p>
-								<ul class="detail">
+								<ul>
 									{% for hightlight in job['highlights'] %}
 										<li>{{ hightlight }}</li>
 									{% endfor %}
