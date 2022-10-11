@@ -98,6 +98,11 @@ class TestIntegrationBroad:
                 html_string = f.read()
             assert exp_func(html_string, value)
 
+    @pytest.mark.parametrize("name", test_dict)
+    def test_pdf_generation(self, load_jsons, name):
+        test_key = REPO_ROOT / test_dict[name]['readfile']
+        assert load_jsons[test_key].pdf_target.exists()
+
     @pytest.mark.parametrize("name", yaml_dict)
     def test_html_from_yaml(self, load_yamls, name):
         for value, exp_func in yaml_dict[name]['expected'].items():
@@ -105,3 +110,4 @@ class TestIntegrationBroad:
             with load_yamls[test_key].html_target.open() as f:
                 html_string = f.read()
             assert exp_func(html_string, value)
+
