@@ -34,6 +34,7 @@ class Resume:
         self.parent_obj = None
         self.html_target = \
             Path(self.config_file.parent, f"{self.config_file.stem}.html")
+        self.pdf_target = None
         self.jinja_env = None
         self.patches = []
         self.reader = reader
@@ -49,6 +50,7 @@ class Resume:
         with config_path.open() as f:
             raw_data = self.reader(f)
         html_path = raw_data.get('output-html', '')
+        pdf_path = raw_data.get('output-pdf', '')
         if html_path:
             del raw_data['output-html']
             raw = config_path.parent / html_path
