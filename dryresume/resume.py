@@ -47,18 +47,19 @@ class Resume:
 
     def load_config(self, config_path):
         with config_path.open() as f:
-            raw_data = self.reader(f)
-        html_path = raw_data.get('output-html', '')
+            config = self.reader(f)
+        options = config['options']
+        data = config.get('resume', {})
+        html_path = options.get('output-html', '')
         if html_path:
-            del raw_data['output-html']
             raw = config_path.parent / html_path
             self.html_target = raw.resolve()
-        parent_ref = raw_data.get('parent-data')
-        patches = raw_data.get('patches', [])
+        parent_ref = options.get('parent-data')
+        patches = options.get('patches', [])
         if parent_ref:
             self._inherit_from_parent(parent_ref, patches)
         else:
-            self._save(raw_data)
+            self._save(data)
 
     def _inherit_from_parent(self, parent_ref, patches):
         global resume_cache

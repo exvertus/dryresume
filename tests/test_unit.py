@@ -8,12 +8,34 @@ from dryresume.resume import Resume, year_only, in_groups_of
 PARENT_1_VALUE, PARENT_2_VALUE = str(uuid4()), str(uuid4())
 FAKE_DIR = '/fake/temp/dir'
 TEST_DATA = {
-    'parent.json': {"data": PARENT_1_VALUE},
-    'child.json': {"parent-data": "./parent.json"},
-    'grandchild.json': {"parent-data": "./child.json"},
-    'parentTwo.json': {"data": PARENT_2_VALUE},
-    'childTwo.json': {"parent-data": "./parentTwo.json"},
-    'childTwoAgain.json': {"parent-data": "./parentTwo.json"}
+    'parent.json': {
+        "resume": PARENT_1_VALUE,
+        "options": {}
+    },
+    'child.json': {
+        "options": {
+            "parent-data": "./parent.json"
+        }
+    },
+    'grandchild.json': {
+        "options": {
+            "parent-data": "./child.json"
+        }
+    },
+    'parentTwo.json': {
+        "resume": PARENT_2_VALUE,
+        "options": {}
+    },
+    'childTwo.json': {
+        "options": {
+            "parent-data": "./parentTwo.json"
+        }
+    },
+    'childTwoAgain.json': {
+        "options": {
+            "parent-data": "./parentTwo.json"
+        }
+    }
 }
 
 test_dates = {
@@ -65,7 +87,7 @@ class TestResume:
     def test_load_config(self, resume_obj, fake_file):
         if resume_obj.config_file.name in \
             ('parent.json', 'child.json', 'grandchild.json'):
-            assert resume_obj.data == {"data": PARENT_1_VALUE}
+            assert resume_obj.data == PARENT_1_VALUE
         elif resume_obj.config_file.name in \
             ('parentTwo.json', 'childTwo.json', 'childTwoAgain.json'):
-            assert resume_obj.data == {"data": PARENT_2_VALUE}
+            assert resume_obj.data == PARENT_2_VALUE

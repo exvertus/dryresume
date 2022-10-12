@@ -61,13 +61,15 @@ def yaml_files(json_files, tmp_path):
         yaml_dest_path = REPO_ROOT / "build" / f"{json_path.stem}.html"
         yaml_src_path = tmp_path / file_ext_only
         with json_path.open() as json_file:
-            data = json.load(json_file)
-        data['output-html'] = str(yaml_dest_path)
-        if 'parent-data' in data:
-            data['parent-data'] = \
-                f"{str(Path(data['parent-data']).stem)}.yaml"
+            config = json.load(json_file)
+        options = config['options']
+        data = config.get('resume')
+        options['output-html'] = str(yaml_dest_path)
+        if 'parent-data' in options:
+            options['parent-data'] = \
+                f"{str(Path(options['parent-data']).stem)}.yaml"
         with yaml_src_path.open('w+') as yaml_file:
-            yaml.dump(data, yaml_file)
+            yaml.dump({'options': options, 'resume': data}, yaml_file)
         yaml_dict[file_ext_only]['readfile'] = yaml_src_path
         result.append(yaml_src_path)
     return result

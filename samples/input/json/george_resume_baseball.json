@@ -1,51 +1,53 @@
 {
-    "output-html": "../../../build/baseball_from_json.html",
-    "parent-data": "./george_resume.json",
-    "patches": [
-        {
-            "op": "replace",
-            "path": "/contact/nickname",
-            "value": "George"
-        },
-        {
-            "op": "replace",
-            "path": "/contact/email",
-            "value": "george@georgecostanza.com"
-        },
-        {
-            "op": "replace",
-            "path": "/introduction",
-            "value": {
-                "job": "MLB Assistant",
-                "summary": "I have three years of strong experience assisting in all baseball business related matters.",
-                "website": "https://www.georgecostanza.com/"
+    "options": {
+        "output-html": "../../../build/baseball_from_json.html",
+        "parent-data": "./george_resume.json",
+        "patches": [
+            {
+                "op": "replace",
+                "path": "/contact/nickname",
+                "value": "George"
+            },
+            {
+                "op": "replace",
+                "path": "/contact/email",
+                "value": "george@georgecostanza.com"
+            },
+            {
+                "op": "replace",
+                "path": "/introduction",
+                "value": {
+                    "job": "MLB Assistant",
+                    "summary": "I have three years of strong experience assisting in all baseball business related matters.",
+                    "website": "https://www.georgecostanza.com/"
+                }
+            },
+            {
+                "op": "replace",
+                "path": "/skills/1",
+                "value": {"name": "Sleeping under desk", "score": 5}
+            },
+            {
+                "op": "replace",
+                "path": "/experiences",
+                "value": [{
+                    "organization": "New York Yankees",
+                    "title": "Assistant to the Traveling Secretary",
+                    "start_date": "05/19/1994",
+                    "end_date": "05/08/1997",
+                    "website": "https://www.mlb.com/yankees",
+                    "description": "Assisted Traveling Secretary in business, team and stadium initiatives.",
+                    "highlights": [
+                        "Spearheaded initiative replacing polyester player uniforms with cotton uniforms.",
+                        "Built sleeping quarters underneath the desk in my office."
+                    ]
+                }]
+            },
+            {
+                "op": "replace",
+                "path": "/academics/0/degree",
+                "value": "BA, General Studies"
             }
-        },
-        {
-            "op": "replace",
-            "path": "/skills/1",
-            "value": {"name": "Sleeping under desk", "score": 5}
-        },
-        {
-            "op": "replace",
-            "path": "/experiences",
-            "value": [{
-                "organization": "New York Yankees",
-                "title": "Assistant to the Traveling Secretary",
-                "start_date": "05/19/1994",
-                "end_date": "05/08/1997",
-                "website": "https://www.mlb.com/yankees",
-                "description": "Assisted Traveling Secretary in business, team and stadium initiatives.",
-                "highlights": [
-                    "Spearheaded initiative replacing polyester player uniforms with cotton uniforms.",
-                    "Built sleeping quarters underneath the desk in my office."
-                ]
-            }]
-        },
-        {
-            "op": "replace",
-            "path": "/academics/0/degree",
-            "value": "BA, General Studies"
-        }
-    ]
+        ]
+    }
 }
