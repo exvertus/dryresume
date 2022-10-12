@@ -1,22 +1,24 @@
 {
-    "output-html": "../../../build/tv_from_json.html",
-    "parent-data": "./george_resume_baseball.json",
-    "patches": [
-        {
-            "op": "replace",
-            "path": "/skills/1",
-            "value": {"name": "Screenwriting", "score": 4}
-        },
-        {
-            "op": "add",
-            "path": "/cv",
-            "value": [
-                {
-                    "production": "Jerry",
-                    "role": "Writer",
-                    "description": "Sitcom pilot-production for NBC."
-                }
-            ]
-        }
-    ]
+    "options": {
+        "output-html": "../../../build/tv_from_json.html",
+        "parent-data": "./george_resume_baseball.json",
+        "patches": [
+            {
+                "op": "replace",
+                "path": "/skills/1",
+                "value": {"name": "Screenwriting", "score": 4}
+            },
+            {
+                "op": "add",
+                "path": "/cv",
+                "value": [
+                    {
+                        "production": "Jerry",
+                        "role": "Writer",
+                        "description": "Sitcom pilot-production for NBC."
+                    }
+                ]
+            }
+        ]
+    }
 }

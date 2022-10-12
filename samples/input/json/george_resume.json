@@ -1,68 +1,72 @@
-{
-    "output-html": "../../../build/george_from_json.html",
-    "contact": {
-        "name": "George Costanza",
-        "nickname": "Koko the Monkey",
-        "email": "gcostanza@frankandestelle.net",
-        "phone": "1.555.555.5555",
-        "location": {
-            "address": "22-37 37th St",
-            "city": "Queens",
-            "state": "NY",
-            "country": "United States",
-            "zip": "11105"
-        }
+{   
+    "options": {
+        "output-html": "../../../build/george_from_json.html"
     },
-    "introduction": {
-        "job": "Architect",
-        "summary": "I build railroads.",
-        "website": "https://www.vandelayindustries.com/",
-        "social": "https://www.linkedin.com/in/george-costanza-a89b469/"
-    },
-    "skills": [
-        {"name": "Risk-management", "score": 5},
-        {"name": "Architectural design", "score": 5},
-        {"name": "Getting upset", "score": 5},
-        {"name": "Lying", "score": 4},
-        {"name": "Thriftiness", "score": 5},
-        {"name": "Cheating", "score": 2},
-        {"name": "Hand modeling", "score": 4},
-        {"name": "Domain mastering", "score": 3},
-        {"name": "Parking cars", "score": 1},
-        {"name": "Sales", "score": 2}
-    ],
-    "experiences": [
-        {
-            "organization": "Vandelay Industries",
-            "title": "Architect",
-            "start_date": "05/31/1990",
-            "end_date": "06/06/1990",
-            "website": "https://www.vandelayindustries.com/",
-            "description": "Railroad and museum building and design.",
-            "highlights": [
-                "Designed the new addition to the Guggenheim Museum in record time.",
-                "Designed various railroads."
-            ]
+    "resume": {
+        "contact": {
+            "name": "George Costanza",
+            "nickname": "Koko the Monkey",
+            "email": "gcostanza@frankandestelle.net",
+            "phone": "1.555.555.5555",
+            "location": {
+                "address": "22-37 37th St",
+                "city": "Queens",
+                "state": "NY",
+                "country": "United States",
+                "zip": "11105"
+            }
         },
-        {
-            "organization": "Pendant Publishing",
-            "title": "Reader/Editor",
-            "start_date": "12/11/1991",
-            "end_date": "12/20/1991",
-            "website": "https://pendantpublishing.com/",
-            "description": "Proofreading and editing.",
-            "highlights": [
-                "Had sex with the cleaning lady on the desk in my office."
-            ]
-        }
-    ],
-    "academics": [
-        {
-            "institution": "Queens College",
-            "location": "Flushing, New York",
-            "website": "https://www.qc.cuny.edu/",
-            "degree": "Bachelor of Marine Biology",
-            "gpa": "2.1"
-        }
-    ]
-}
+        "introduction": {
+            "job": "Architect",
+            "summary": "I build railroads.",
+            "website": "https://www.vandelayindustries.com/",
+            "social": "https://www.linkedin.com/in/george-costanza-a89b469/"
+        },
+        "skills": [
+            {"name": "Risk-management", "score": 5},
+            {"name": "Architectural design", "score": 5},
+            {"name": "Getting upset", "score": 5},
+            {"name": "Lying", "score": 4},
+            {"name": "Thriftiness", "score": 5},
+            {"name": "Cheating", "score": 2},
+            {"name": "Hand modeling", "score": 4},
+            {"name": "Domain mastering", "score": 3},
+            {"name": "Parking cars", "score": 1},
+            {"name": "Sales", "score": 2}
+        ],
+        "experiences": [
+            {
+                "organization": "Vandelay Industries",
+                "title": "Architect",
+                "start_date": "05/31/1990",
+                "end_date": "06/06/1990",
+                "website": "https://www.vandelayindustries.com/",
+                "description": "Railroad and museum building and design.",
+                "highlights": [
+                    "Designed the new addition to the Guggenheim Museum in record time.",
+                    "Designed various railroads."
+                ]
+            },
+            {
+                "organization": "Pendant Publishing",
+                "title": "Reader/Editor",
+                "start_date": "12/11/1991",
+                "end_date": "12/20/1991",
+                "website": "https://pendantpublishing.com/",
+                "description": "Proofreading and editing.",
+                "highlights": [
+                    "Had sex with the cleaning lady on the desk in my office."
+                ]
+            }
+        ],
+        "academics": [
+            {
+                "institution": "Queens College",
+                "location": "Flushing, New York",
+                "website": "https://www.qc.cuny.edu/",
+                "degree": "Bachelor of Marine Biology",
+                "gpa": "2.1"
+            }
+        ]
+    }
+}  
