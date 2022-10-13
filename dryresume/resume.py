@@ -27,7 +27,7 @@ def in_groups_of(iterator, groups):
     return results
 
 class Resume:
-    def __init__(self, config_path, reader, use_cache=True):
+    def __init__(self, config_path, reader=json.load, use_cache=True):
         self.config_file = self.get_config_file(config_path)
         self.use_cache = use_cache
         self.data = {}
@@ -97,11 +97,10 @@ class Resume:
         if not style_dir.exists():
             shutil.copytree(
                 Path(__file__).parent / 'templates/resumeCSS', style_dir)
-        print('test')
 
 def create_resumes(resume_files, reader=json.load):
     resume_datas = {}
     for fp in resume_files:
-        resume_datas[fp] = Resume(fp, reader)
+        resume_datas[fp] = Resume(fp, reader=reader)
         resume_datas[fp].to_html()
     return resume_datas

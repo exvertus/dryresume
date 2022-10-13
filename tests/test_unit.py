@@ -1,6 +1,5 @@
 import pytest
 from pathlib import Path
-from unittest.mock import patch
 from uuid import uuid4
 
 from dryresume.resume import Resume, year_only, in_groups_of
@@ -10,7 +9,9 @@ FAKE_DIR = '/fake/temp/dir'
 TEST_DATA = {
     'parent.json': {
         "resume": PARENT_1_VALUE,
-        "options": {}
+        "options": {
+            'output-html': "./parent.html"
+        }
     },
     'child.json': {
         "options": {
@@ -58,6 +59,12 @@ class TestResume:
     def fake_fs(self, fs_module):
         return fs_module
 
+    @pytest.fixture(scope='class', autouse=True)
+    def mock_jinja(self, class_mocker):
+        class_mocker.patch('dryresume.resume.Environment')
+        class_mocker.patch('dryresume.resume.PackageLoader')
+        class_mocker.patch('dryresume.resume.select_autoescape')
+
     def test_get_config_missing(self, fs):
         arbitrary_path = Path(str(uuid4()))
         with pytest.raises(FileNotFoundError):
@@ -84,10 +91,28 @@ class TestResume:
     def resume_obj(self, stub_reader, fake_file):
         return Resume(fake_file, stub_reader)
 
-    def test_load_config(self, resume_obj, fake_file):
+    def test_load_config(self, resume_obj):
         if resume_obj.config_file.name in \
             ('parent.json', 'child.json', 'grandchild.json'):
             assert resume_obj.data == PARENT_1_VALUE
         elif resume_obj.config_file.name in \
             ('parentTwo.json', 'childTwo.json', 'childTwoAgain.json'):
             assert resume_obj.data == PARENT_2_VALUE
+
+    def test_to_html(self, fake_fs, mock_jinja, mocker, stub_reader):
+        test_path = Path(FAKE_DIR) / 'parent.json'
+        if not test_path.exists():
+            fake_fs.create_file(test_path)
+        fake_fs.add_real_directory(
+            Path(__file__).parent.parent / 'dryresume' / 'templates')
+        class JinjaTemplate(object):
+            def render(self, _):
+                return 'stub_data'
+        def gt(_):
+            return JinjaTemplate()
+        resume = Resume(test_path, stub_reader)
+        resume.jinja_env = mocker.Mock()
+        resume.jinja_env.get_template = \
+            mocker.Mock(return_value=JinjaTemplate())
+        resume.to_html()
+        assert resume.jinja_env.get_template.called
