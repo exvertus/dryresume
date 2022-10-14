@@ -1,11 +1,13 @@
 import datetime
 import jsonpatch
 import json
+import logging
 import shutil
 from pathlib import Path
 from copy import deepcopy
 from jinja2 import Environment, PackageLoader, select_autoescape
 
+logging.basicConfig(level=logging.INFO)
 resume_cache = {}
 
 def year_only(date_str, format='%Y'):
@@ -42,6 +44,7 @@ class Resume:
     def get_config_file(self, config_path):
         config_file = Path(config_path).resolve()
         if not config_file.exists():
+            logging.error(f"Expected to find config file at {config_file}")
             raise FileNotFoundError
         return config_file
 
@@ -60,6 +63,7 @@ class Resume:
             self._inherit_from_parent(parent_ref, patches)
         else:
             self._save(data)
+        logging.debug(f"Resume configuration from {config_path} loaded")
 
     def _inherit_from_parent(self, parent_ref, patches):
         global resume_cache
@@ -93,14 +97,17 @@ class Resume:
             self.html_target.parent.mkdir()
         with self.html_target.open('w') as f:
             f.write(template.render(self.data))
+        logging.debug(f"html file output to {self.html_target}")
         style_dir = Path(self.html_target.parent, 'resumeCSS')
         if not style_dir.exists():
             shutil.copytree(
                 Path(__file__).parent / 'templates/resumeCSS', style_dir)
+            logging.debug(f"Copied css to {style_dir}")
 
 def create_resumes(resume_files, reader=json.load):
     resume_datas = {}
     for fp in resume_files:
         resume_datas[fp] = Resume(fp, reader=reader)
         resume_datas[fp].to_html()
+    logging.info(f"Created {len(resume_datas)} resumes.")
     return resume_datas
