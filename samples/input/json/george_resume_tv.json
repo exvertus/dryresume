@@ -10,6 +10,11 @@
             },
             {
                 "op": "add",
+                "path": "/skills/8",
+                "value": {"name": "Writing", "score": 2}
+            },
+            {
+                "op": "add",
                 "path": "/cv",
                 "value": [
                     {
