@@ -1,7 +1,8 @@
 [tool.poetry]
 name = "dryresume"
 version = "0.1.0"
-description = "YAML/JSON to html resume generator for different resume versions"
+description = "YAML/JSON to html resume generator for juggling multiple resumes while conforming to the DRY principle"
+license = "GPL-3.0-or-later"
 authors = ["Thomas Flanigan <tflanig1@gmail.com>"]
 readme = "README.md"
 packages = [{include = "dryresume"}]

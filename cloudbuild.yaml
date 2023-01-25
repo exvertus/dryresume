@@ -1,0 +1,13 @@
+steps:
+- id: 'install'
+  name: 'gcr.io/???'
+  args: ["install", "--with", "dev"]
+- id: 'test'
+  name: 'gcr.io/???'
+  args: ["run", "pytest", "tests"]
+- id: 'build'
+  name: 'gcr.io/???'
+  args: ["build"]
+- id: 'publish'
+  name: 'gcr.io/???'
+  args: ["publish"]
