@@ -115,7 +115,7 @@ def create_resumes(resume_files, reader=json.load):
     logging.info(f"Created {len(resume_datas)} resumes.")
     return resume_datas
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description='Generate resumes from yaml/json')
     parser.add_argument('--files', nargs='+', dest='files')
     parser.add_argument('--format', dest='format', 
@@ -126,3 +126,6 @@ if __name__ == "__main__":
         'json': json.load}
     reader = reader_dict[args.format]
     create_resumes(args.files, reader=reader)
+
+if __name__ == "__main__":
+    main()
