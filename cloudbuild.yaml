@@ -10,7 +10,7 @@ steps:
   args: ["build"]
 - id: 'build-docker'
   name: 'gcr.io/cloud-builders/docker'
-  args: ["build", "${_AR_PATH}/$PROJECT_ID/dryresume/dryresume:latest"]
+  args: ["build", "-t", "${_AR_PATH}/$PROJECT_ID/dryresume/dryresume:latest"]
 - id: 'push'
   name: 'gcr.io/cloud-builders/docker'
   args: ["push", "${_AR_PATH}/$PROJECT_ID/dryresume/dryresume:latest"]
