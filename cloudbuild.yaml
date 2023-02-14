@@ -4,7 +4,7 @@ steps:
   args: ["install", "--with", "dev"]
 - id: 'test'
   name: 'gcr.io/$PROJECT_ID/poetry'
-  args: ["python", "-m", "run", "pytest", "tests"]
+  args: ["run", "python", "-m", "pytest", "tests"]
 - id: 'build'
   name: 'gcr.io/$PROJECT_ID/poetry'
   args: ["build"]
