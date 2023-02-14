@@ -1,2 +1,2 @@
 [repositories.cloud]
-url = "https://us-central1-python.pkg.dev/${GOOGLE_CLOUD_PROJECT}/dryresume/"
+url = "https://${LOCATION}-python.pkg.dev/${GOOGLE_CLOUD_PROJECT}/dryresume/"
