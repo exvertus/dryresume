@@ -2,4 +2,4 @@
 url = "https://${LOCATION}-python.pkg.dev/${GOOGLE_CLOUD_PROJECT}/dryresume/"
 
 [virtualenvs]
-create = false
+create = true
