@@ -1,13 +1,15 @@
 steps:
 - id: 'install'
-  name: 'gcr.io/???'
+  name: 'gcr.io/$PROJECT_ID/poetry'
   args: ["install", "--with", "dev"]
 - id: 'test'
-  name: 'gcr.io/???'
+  name: 'gcr.io/$PROJECT_ID/poetry'
   args: ["run", "pytest", "tests"]
 - id: 'build'
-  name: 'gcr.io/???'
+  name: 'gcr.io/$PROJECT_ID/poetry'
   args: ["build"]
 - id: 'publish'
-  name: 'gcr.io/???'
+  name: 'gcr.io/$PROJECT_ID/poetry'
+  env:
+  - 'GOOGLE_CLOUD_PROJECT=$PROJECT_ID'
   args: ["publish"]
