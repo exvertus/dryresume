@@ -13,4 +13,4 @@ steps:
   env:
   - 'GOOGLE_CLOUD_PROJECT=$PROJECT_ID'
   - 'LOCATION=${_LOCATION}'
-  args: ["publish"]
+  args: ["publish", "-r", "artifactregistry"]
