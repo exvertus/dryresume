@@ -50,9 +50,13 @@ def test_year_only(td):
 
 test_lengths = ((0, 0), (8, 1), (7, 3), (30, 7))
 @pytest.mark.parametrize("tl", test_lengths)
-def test_in_groups_of(tl):
+def test_in_groups_of_len(tl):
     testlist = ["a"*tl[0]]
     assert len(in_groups_of(testlist, tl[1])) == tl[1]
+
+def test_in_groups_of_data():
+    testlist = [i for i in range(11)]
+    assert in_groups_of(testlist, 3) == [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10]]
 
 class TestResume:
     @pytest.fixture(scope='class', autouse=True)

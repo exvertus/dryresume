@@ -1,10 +1,12 @@
 [tool.poetry]
 name = "dryresume"
 version = "0.1.0"
-description = ""
-authors = ["tflanigan <tflanig1@gmail.com>"]
+description = "YAML/JSON to html resume generator for juggling multiple resumes while conforming to the DRY principle"
+license = "GPL-3.0-or-later"
+authors = ["Thomas Flanigan <tflanig1@gmail.com>"]
 readme = "README.md"
-packages = [{include = "resume_automator"}]
+packages = [{include = "dryresume"}]
+repository = "https://github.com/exvertus/dryresume"
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -16,6 +18,7 @@ jsonpatch = "^1.32"
 pytest = "^7.1.3"
 pytest-mock = "^3.8.2"
 pyfakefs = "^4.7.0"
+keyrings-google-artifactregistry-auth = "^1.1.1"
 
 [build-system]
 requires = ["poetry-core"]

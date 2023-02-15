@@ -1,0 +1,16 @@
+steps:
+- id: 'install'
+  name: 'gcr.io/$PROJECT_ID/poetry'
+  args: ["install", "--with", "dev"]
+- id: 'test'
+  name: 'gcr.io/$PROJECT_ID/poetry'
+  args: ["run", "pytest", "tests"]
+- id: 'build-whl'
+  name: 'gcr.io/$PROJECT_ID/poetry'
+  args: ["build"]
+- id: 'build-docker'
+  name: 'gcr.io/cloud-builders/docker'
+  args: ["build", "-t", "${_AR_PATH}/$PROJECT_ID/dryresume/dryresume:latest", "."]
+- id: 'push'
+  name: 'gcr.io/cloud-builders/docker'
+  args: ["push", "${_AR_PATH}/$PROJECT_ID/dryresume/dryresume:latest"]

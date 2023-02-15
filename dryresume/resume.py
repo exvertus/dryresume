@@ -1,11 +1,13 @@
+import argparse
 import datetime
 import jsonpatch
 import json
 import logging
 import shutil
+import yaml
 from pathlib import Path
 from copy import deepcopy
-from jinja2 import Environment, PackageLoader, select_autoescape
+from jinja2 import Environment, FileSystemLoader, PackageLoader, select_autoescape
 
 logging.basicConfig(level=logging.INFO)
 resume_cache = {}
@@ -86,7 +88,8 @@ class Resume:
     def to_html(self):
         if not self.jinja_env:
             self.jinja_env = Environment(
-                loader=PackageLoader("dryresume"),
+                # loader=PackageLoader("dryresume"),
+                loader=FileSystemLoader(Path(__file__).parent / 'templates'),
                 autoescape=select_autoescape()
             )
             self.jinja_env.filters['year_only'] = year_only
@@ -111,3 +114,18 @@ def create_resumes(resume_files, reader=json.load):
         resume_datas[fp].to_html()
     logging.info(f"Created {len(resume_datas)} resumes.")
     return resume_datas
+
+def main():
+    parser = argparse.ArgumentParser(description='Generate resumes from yaml/json')
+    parser.add_argument('--files', nargs='+', dest='files')
+    parser.add_argument('--format', dest='format', 
+        choices=['yaml', 'json'], default='json')
+    args = parser.parse_args()
+    reader_dict = {
+        'yaml': lambda x : yaml.load(x, Loader = yaml.Loader),
+        'json': json.load}
+    reader = reader_dict[args.format]
+    create_resumes(args.files, reader=reader)
+
+if __name__ == "__main__":
+    main()
