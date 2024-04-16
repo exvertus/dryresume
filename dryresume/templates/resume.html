@@ -57,19 +57,13 @@
 							<h2>Skills</h2>
 						</div>
 						<div class="yui-u">
-							{% for skill_column in skills|
-								sort(attribute="score,name", reverse=true)|
-								in_groups_of(3) %}
+							{% for skill_category in skills %}
 							<ul class="talent">
-								{% for cnt, skill in skill_column|enumerate %}
-									{% if cnt+1 == skill_column|length %}
-									<li class="last">{{ skill.score }}/5 {{ skill.name }}</li>
-									{% else %}
-									<li>{{ skill.score }}/5 {{ skill.name }}</li>
-									{% endif %}
-								{% endfor %}
+							<h4>{{ skill_category.category }}</h4>
+							<p>{{ skill_category.details | join (', ')}}</p>
 							</ul>
 							{% endfor %}
+						
 						</div>
 					</div><!--// .yui-gf-->
 
@@ -89,7 +83,7 @@
 							{% endif %}
 								<h2><a id="{{ job.organization }}" href="{{ job.website }}">{{ job.organization }}</a></h2>
 								<h3>{{ job.title }}</h3>
-								<h4>{{ job.start_date|year_only }} - {{ job.end_date|year_only }}</h4>
+								<h4>{{ job.start_date.year_and_month }} - {{ job.end_date.year_and_month }}</h4>
 								<p>{{ job.description }}</p>
 								<ul>
 									{% for hightlight in job['highlights'] %}

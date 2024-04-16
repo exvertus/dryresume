@@ -12,7 +12,7 @@ from jinja2 import Environment, FileSystemLoader, PackageLoader, select_autoesca
 logging.basicConfig(level=logging.INFO)
 resume_cache = {}
 
-def year_only(date_str, format='%Y'):
+def year_and_month(date_str, format='%m/%Y'):
     date = datetime.datetime.strptime(date_str, "%m/%d/%Y").date()
     return date.strftime(format)
 
@@ -92,7 +92,7 @@ class Resume:
                 loader=FileSystemLoader(Path(__file__).parent / 'templates'),
                 autoescape=select_autoescape()
             )
-            self.jinja_env.filters['year_only'] = year_only
+            self.jinja_env.filters['year_and_month'] = year_and_month
             self.jinja_env.filters['in_groups_of'] = in_groups_of
             self.jinja_env.filters['enumerate'] = enumerate
         template = self.jinja_env.get_template("resume.html")

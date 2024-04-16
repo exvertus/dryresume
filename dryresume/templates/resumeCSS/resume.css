@@ -40,7 +40,7 @@ a { color: #990003 }
 a:hover { text-decoration: none; }
 strong { font-weight: bold; }
 li { line-height: 24px; border-bottom: 1px solid #ccc; }
-p.enlarge { font-size: 144%; padding-right: 6.5em; line-height: 24px; }
+p.enlarge { font-size: 108%; padding-right: 6.5em; line-height: 18px; }
 p.enlarge span { color: #000 }
 .contact-info { margin-top: 7px; }
 .first h2 { font-style: italic; }
@@ -63,7 +63,8 @@ a#pdf:hover { background: #222; }
 .skills-list li { margin: 3px 0; padding: 3px 0; }
 .skills-list li span { font-size: 152%; display: block; margin-bottom: -2px; padding: 0 }
 .talent { width: 32%; float: left }
-.talent h2 { margin-bottom: 6px; }
+.talent h4 { margin-bottom: 2px; }
+.talent p { margin: .75em 0 1em 0; }
 
 #srt-ttab { margin-bottom: 100px; text-align: center;  }
 #srt-ttab img.last { margin-top: 20px }
