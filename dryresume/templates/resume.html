@@ -83,7 +83,7 @@
 							{% endif %}
 								<h2><a id="{{ job.organization }}" href="{{ job.website }}">{{ job.organization }}</a></h2>
 								<h3>{{ job.title }}</h3>
-								<h4>{{ job.start_date.year_and_month }} - {{ job.end_date.year_and_month }}</h4>
+								<h4>{{ job.start_date | year_and_month }} - {{ job.end_date | year_and_month }}</h4>
 								<p>{{ job.description }}</p>
 								<ul>
 									{% for hightlight in job['highlights'] %}
