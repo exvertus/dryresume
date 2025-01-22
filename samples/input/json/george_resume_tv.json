@@ -5,13 +5,13 @@
         "patches": [
             {
                 "op": "replace",
-                "path": "/skills/1",
-                "value": {"name": "Screenwriting", "score": 4}
+                "path": "/skills/0/details/1",
+                "value": "Screenwriting"
             },
             {
                 "op": "add",
-                "path": "/skills/8",
-                "value": {"name": "Writing", "score": 2}
+                "path": "/skills/0/details/2",
+                "value": "Writing"
             },
             {
                 "op": "add",

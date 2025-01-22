@@ -2,7 +2,7 @@ import pytest
 from pathlib import Path
 from uuid import uuid4
 
-from dryresume.resume import Resume, year_only, in_groups_of
+from dryresume.resume import Resume, year_and_month, in_groups_of
 
 PARENT_1_VALUE, PARENT_2_VALUE = str(uuid4()), str(uuid4())
 FAKE_DIR = '/fake/temp/dir'
@@ -40,13 +40,13 @@ TEST_DATA = {
 }
 
 test_dates = {
-    '01/01/1000': '1000',
-    '07/04/1776': '1776',
-    '10/31/2022': '2022'
+    '01/01/1000': '01/1000',
+    '07/04/1776': '07/1776',
+    '10/31/2022': '10/2022'
 }
 @pytest.mark.parametrize("td", test_dates)
 def test_year_only(td):
-    assert year_only(td) == test_dates[td]
+    assert year_and_month(td) == test_dates[td]
 
 test_lengths = ((0, 0), (8, 1), (7, 3), (30, 7))
 @pytest.mark.parametrize("tl", test_lengths)
@@ -58,11 +58,7 @@ def test_in_groups_of_data():
     testlist = [i for i in range(11)]
     assert in_groups_of(testlist, 3) == [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10]]
 
-class TestResume:
-    @pytest.fixture(scope='class', autouse=True)
-    def fake_fs(self, fs_module):
-        return fs_module
-
+class TestResume():
     @pytest.fixture(scope='class', autouse=True)
     def mock_jinja(self, class_mocker):
         class_mocker.patch('dryresume.resume.Environment')
@@ -86,16 +82,16 @@ class TestResume:
         return reader
 
     @pytest.fixture(params=TEST_DATA.keys())
-    def fake_file(self, fake_fs, request):
-        path = Path(FAKE_DIR) / request.param
-        fake_fs.create_file(path)
-        return path
+    def fake_file(self, fs_session, request):
+        p = Path(FAKE_DIR) / request.param
+        fs_session.create_file(p)
+        return p
 
     @pytest.fixture()
-    def resume_obj(self, stub_reader, fake_file):
+    def resume_obj(self, stub_reader, fake_file, fs_session):
         return Resume(fake_file, stub_reader)
 
-    def test_load_config(self, resume_obj):
+    def test_load_config(self, resume_obj, fs_session):
         if resume_obj.config_file.name in \
             ('parent.json', 'child.json', 'grandchild.json'):
             assert resume_obj.data == PARENT_1_VALUE
@@ -103,11 +99,11 @@ class TestResume:
             ('parentTwo.json', 'childTwo.json', 'childTwoAgain.json'):
             assert resume_obj.data == PARENT_2_VALUE
 
-    def test_to_html(self, fake_fs, mock_jinja, mocker, stub_reader):
+    def test_to_html(self, fs_session, mock_jinja, mocker, stub_reader):
         test_path = Path(FAKE_DIR) / 'parent.json'
         if not test_path.exists():
-            fake_fs.create_file(test_path)
-        fake_fs.add_real_directory(
+            fs_session.create_file(test_path)
+        fs_session.add_real_directory(
             Path(__file__).parent.parent / 'dryresume' / 'templates')
         class JinjaTemplate(object):
             def render(self, _):
